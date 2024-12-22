@@ -29,12 +29,9 @@ Frac* mvv(Vector* v1, Vector* v2) {
         return 0;
     }
     
-    Frac* res;
-    res->d = 0;
-    res->n = 1;
-    for (int i = 0; i < v1->size; i++) 
-        plusf(res, mulf(v1->valuesf[i], v2->valuesf[i])); 
-    for (int i = 0; i < v1->size; i++) reduct(res);
+    Frac* res = divf(0, 1);
+    for (int i = 0; i < v1->size; i++) res = plusf(res, mulf(v1->valuesf[i], v2->valuesf[i]));
+    reduct(res);
     return res;
 }
 
@@ -91,11 +88,11 @@ int main()
   printf("vec3 : \n");
   printVector(vec3);
   printf("vec3 * vec1 : \n");
-  printf("%s", prtf(mvv(vec3, vec)));
+  printf("%s\n", prtf(mvv(vec3, vec)));
   printf("vec3 * vec2: \n");
-  printf("%s", prtf(mvv(vec3, vec2)));
+  printf("%s\n", prtf(mvv(vec3, vec2)));
   printf("vec3 * vec3: \n");
-  printf("%s", prtf(mvv(vec3, vec3)));
+  printf("%s\n", prtf(mvv(vec3, vec3)));
   //printf("mat^T : \n");	
 	//printMatrix(matTrans(mat));
   //printf("mat * vec2 : \n");	

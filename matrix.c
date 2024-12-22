@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "frac.h"
 #include "matrix.h"
 #include "vector.h"
 
@@ -27,7 +28,7 @@ void printMatrix(Matrix* mat) {
     for (int i = 0; i < mat->row_size; i++) {
         printf("v%d : ", i);
         for (int j = 0; j < mat->col_size; j++) {
-            printf("%d ", mat->columns[i]->values[j]);
+            printf("%s ", prtf(mat->columns[i]->valuesf[j]));
         }
         printf("\n");
     }
@@ -43,8 +44,8 @@ Matrix* mms(Matrix* mat, int scal) {
 Vector* matCol(Matrix* mat, int col) { return mat->columns[col]; }
 
 Vector* matRow(Matrix* mat, int row) {
-    int* arr = (int*) malloc(sizeof(int) * mat->row_size);
-    for (int i = 0; i < mat->row_size; i++) arr[i] = mat->columns[i]->values[row];
+    Frac** arrf = (Frac**) malloc(sizeof(Frac*) * mat->row_size);
+    for (int i = 0; i < mat->row_size; i++) arrf[i] = mat->columns[i]->valuesf[row];
     return vectorInit(arr, mat->row_size);
 }
 
